@@ -1,0 +1,48 @@
+@import '../../style/cross';
+
+.userWindow {
+    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #0268b3;
+    padding: 40px 40px 40px 40px;
+    border-radius: 3px;
+    box-shadow: 5px 5px 10px 1px #faa91c;
+    
+    &__form {
+        display: grid;
+        grid-template-columns: minmax(50px,100px) minmax(200px, auto);
+        grid-auto-rows: minmax(20px, auto);
+        row-gap: 5px;
+        align-items: center;
+        label {
+            padding: 0 10px;
+            word-break: break-word;
+        }
+        span {
+            
+        }
+        input {
+            padding: 5px 10px;
+        }
+        [type="submit"] {
+            grid-column: 2;
+            max-width: 150px;
+            word-wrap: break-word;
+            margin-top: 10px;
+            background-color: #0268b3;
+            border-radius: 5px;
+            width: fit-content;
+            padding: 6px 8px 8px 8px;
+            cursor: pointer;
+            color: white;
+            &:hover {
+                background-color: #0095ff;
+            }
+
+            
+        }
+    }
+}

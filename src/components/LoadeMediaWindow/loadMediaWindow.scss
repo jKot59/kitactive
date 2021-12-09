@@ -1,0 +1,38 @@
+.load-media-window {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid black;
+    padding: 40px 40px 20px;
+    background-color: #fff;
+    z-index: 10;
+    &__form {
+        display: flex;
+        flex-direction: column;
+        input {
+            background-color: #faa91c;
+        }
+        button {
+            margin: 0 auto;
+            margin-top: 10px;
+            max-width: 150px;
+            word-wrap: break-word;
+            margin-top: 10px;
+            background-color: #0268b3;
+            border-radius: 5px;
+            width: fit-content;
+            padding: 6px 8px 8px 8px;
+            cursor: pointer;
+            color: white;
+            &:hover {
+                background-color: #0095ff;
+            }
+        }
+    }
+    &__descr {
+        padding: 10px;
+        text-align: center;
+        font-size: 14px;
+    }
+}
