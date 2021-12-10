@@ -1,7 +1,7 @@
 .personal-area {
     &__grid {
         display: grid;
-        grid-template-columns: 2fr 1fr;
+        grid-template-columns: 2fr 255px;
         padding: 20px;
         border: 1px solid black;
         margin: 20px;
@@ -13,17 +13,23 @@
         grid-row: 1 / -1;
         border: 1px solid black;
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(auto, 200px));
         grid-auto-rows: minmax(125px, auto);
         &-item {
             margin: 5px;
             border: 1px solid black;
             cursor: pointer;
+            word-break: break-word;
+            padding: 5px;
             &:hover {
                 box-shadow: 1px 1px 5px 4px #faa91c;
             }
             &.active {
                 box-shadow: 1px 1px 5px 4px #faa91c;
+            }
+            span {
+                color: red;
+                text-decoration: underline;
             }
         }
     }

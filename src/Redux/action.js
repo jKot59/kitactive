@@ -51,5 +51,19 @@ const actionDimensionsOfFiles = (bool) => {
         payload: bool
     }
 }
+// экшн для хранения id ыделенных для удаления фалов
+const actionChosenForDelete = (id) => {
+    return {
+        type: 'chosenForDelete',
+        payload: id
+    }
+}
 
-export {actionHideWindow, actionToken, actionFiles, actionSuccess, actionToggleMediaWindow, actionAmountOfFIles, actionDimensionsOfFiles}
+export {actionHideWindow, 
+    actionToken, 
+    actionFiles, 
+    actionSuccess, 
+    actionToggleMediaWindow, 
+    actionAmountOfFIles, 
+    actionDimensionsOfFiles,
+    actionChosenForDelete}

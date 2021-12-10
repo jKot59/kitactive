@@ -1,11 +1,14 @@
 const _base = 'https://test.kitactive.ru:8089'
 
-/* РЕГИСТРАЦИЯ/ АВТОРИЗАЦИЯ  */
+/* главная функция для переиспользования */
 
-async function postInfo (url, data) {
+async function general (url, data = null, token = null, method) {
     const res = await fetch(_base + url, {
-        method: "POST",
-        body: new FormData(data),
+        method: method,
+        body: data,
+        headers: {
+            'Authorization': `Bearer ${token}`
+        }
     })
 
     if (!res.ok) {
@@ -13,58 +16,36 @@ async function postInfo (url, data) {
     }
 
     return await res.json()
+}
+
+/* РЕГИСТРАЦИЯ/ АВТОРИЗАЦИЯ  */
+
+async function postInfo (url, data) {
+    return await general(url, new FormData(data), null, "POST")
 }
 
 /* ВЫЙТИ ИЗ АККАУНТА */
 
 async function exitAccount (url, token) {
-    const res = await fetch(_base + url, {
-        method: "POST",
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
-
-    if (!res.ok) {
-        throw new Error (`POST to ${_base}${url} has status ${res.status}`)
-    }
-
-    return await res.json()
+    return await general(url, null, token, "POST")
 }
 
 /* ПОЛУЧИТЬ ФАЙЛЫ */
 
 async function getMedia (url, token) {
-    const res = await fetch(_base + url, {
-        method: "GET",
-        headers: {
-            'Authorization': `Bearer ${token}`
-        }
-    })
-
-    if (!res.ok) {
-        throw new Error (`POST to ${_base}${url} has status ${res.status}`)
-    }
-
-    return await res.json()
+    return await general(url, null, token, "GET")
 }
 
 /* ОТПРАВИТЬ ФАЙЛЫ  */
 
-async function postMedia (url, token, array) {
-    const res = await fetch(_base + url, {
-        method: "POST",
-        body: array,
-        headers: {
-            'Authorization': `Bearer ${token}`,
-        }
-    })
-
-    if (!res.ok) {
-        throw new Error (`POST to ${_base}${url} has status ${res.status}`)
-    }
-
-    return await res.json()
+async function postMedia (url, token, data) {
+    return await general(url, data, token, "POST") // в data уже должен приходить формат FormData
 }
 
-export {postInfo, exitAccount, getMedia, postMedia}
+/* УДАЛИТЬ ФАЙЛЫ */
+
+async function deleteMedia (url, token) {
+    return await general(url, null, token, "DELETE")
+}
+
+export {postInfo, exitAccount, getMedia, postMedia, deleteMedia}

@@ -6,6 +6,7 @@ const initialState = {
     mediaWindow: false,
     amountOfFiles: false,
     dimensionsOfFiles: false,
+    chosenForDelete: null
 }
 
 
@@ -48,6 +49,11 @@ function reducer (state = initialState, action) {
             return {
                 ...state,
                 dimensionsOfFiles: action.payload
+            }
+        case 'chosenForDelete':
+            return {
+                ...state,
+                chosenForDelete: action.payload
             }
         default:
             return state

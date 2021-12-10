@@ -17,7 +17,7 @@ function UserWindow (props) {
         e.preventDefault()
         setLoading(true)
 
-        // проверяем пропс и вызываем окно регистрации / авторизации
+        // проверяем пропс на тип входа и вызываем окно регистрации / авторизации
         if (props.type){
            requestCicle('/api/login', e.target)
     
@@ -26,8 +26,9 @@ function UserWindow (props) {
         }
     }
 
-    // делаем запрос на сервер и обрабатываем состояние для пользователя
+    // делаем запрос на сервер для авторизации / регистрации
     function requestCicle (address, object) {
+        // отображаем спинер загрузки
         setLoading(true)
         setError(false)
 
@@ -53,7 +54,8 @@ function UserWindow (props) {
         })
     }
 
-    const Content = () => {
+    const SubmitBtn = () => {
+        /* меняем текст кнопки при выборе формы регистрации или авторизации */
         return (
             <button type="submit">{props.type ? "Авторизация" : "Регистрация"}</button>
         )
@@ -90,11 +92,10 @@ function UserWindow (props) {
                     name="password" 
                     type="password" 
                     className="password" />
-                {/* меняем текст кнопки при выборе формы регистрации или авторизации */}
-                {error ? <Error/> : null}
-                {!loading && !error && props.storeSuccess ? <Success/> : null}
-                {!error && loading ? <Spinner/> : <Content/>}
-                {/* редирект на страницу аккаунта */}
+                {error ? <><Error/> <SubmitBtn/></> : null}
+                {!loading && !error && props.storeSuccess ? <Success/> : <SubmitBtn/>}
+                {!error && loading ? <Spinner/> : null}
+                {/* редирект на страницу аккаунта  в случае успешной авторизации*/}
                 {redirecting ? <Navigate to='/account'/> : null}
 
             </form>
